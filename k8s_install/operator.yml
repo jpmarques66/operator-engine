@@ -4,7 +4,7 @@ metadata:
   labels:
     app: ocean-compute-operator
   name: ocean-compute-operator
-  namespace: ocean-compute
+  namespace: ocean-operator-6a138
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -82,16 +82,21 @@ spec:
             configMapKeyRef:
               key: POSTGRES_PORT
               name: postgres-config
-        image: alexdevel:5000/operator-engine:latest
+        image: b2b-docker-registry.cloud.ext.systems/operator-engine:nextV
         imagePullPolicy: Always
         name: ocean-compute-operator
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+      imagePullSecrets:
+        - name: regcred
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {}
+      securityContext:
+        runAsUser: 1001
+        fsGroup: 1001
+        runAsNonRoot: True
       serviceAccount: db-operator
       serviceAccountName: db-operator
       terminationGracePeriodSeconds: 30
