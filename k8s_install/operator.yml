@@ -31,22 +31,22 @@ spec:
           value: somesecret
         - name: AWS_REGION
           value: us-east-1
+        - name: IPFS_OUTPUT
+          value: https://ipfs-extended-dev.data-marketplace.io
+        - name: IPFS_OUTPUT_PREFIX
+          value: https://ipfs-extended-dev.data-marketplace.io/ipfs/
+        - name: IPFS_ADMINLOGS
+          value: https://ipfs-extended-dev.data-marketplace.io
+        - name: IPFS_ADMINLOGS_PREFIX
+          value: https://ipfs-extended-dev.data-marketplace.io/ipfs/
         - name: AWS_BUCKET_OUTPUT
           value: outputbucket
         - name: AWS_BUCKET_ADMINLOGS
           value: adminbucket
-        - name: IPFS_OUTPUT
-          value: http://alexdevel:5001
-        - name: IPFS_OUTPUT_PREFIX
-          value: http://alexdevel:5001/ipfs/
-        - name: IPFS_ADMINLOGS
-          value: http://alexdevel:5001
-        - name: IPFS_ADMINLOGS_PREFIX
-          value: http://alexdevel:5001/ipfs/
         - name: IPFS_EXPIRY_TIME
           value: "3600"
         - name: STORAGE_CLASS
-          value: standard
+          value: slow-3-v2
         - name: LOG_LEVEL
           value: DEBUG
         - name: POD_CONFIGURATION_CONTAINER
