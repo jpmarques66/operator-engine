@@ -26,3 +26,36 @@ rules:
     verbs:
       - "create"
       - "get"
+  - apiGroups:
+      - ""
+    resources:
+      - "persistentvolumeclaims"
+    verbs:
+      - "create"
+      - "get"
+      - "list"
+      - "delete"
+  - apiGroups:
+      - ""
+    resources:
+      - "configmaps"
+    verbs:
+      - "create"
+      - "get"
+      - "list"
+      - "delete"
+  - apiGroups:
+    - batch
+    resources:
+      - cronjobs
+      - jobs
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - delete
+      - deletecollection
+      - patch
+      - update
+
