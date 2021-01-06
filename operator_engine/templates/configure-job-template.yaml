@@ -12,6 +12,8 @@ spec:
       labels:
         workflow: ""
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
       - args: []
         command: []
@@ -20,6 +22,9 @@ spec:
         name: "workflow-executor"
         resources: {}
         env: []
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
       restartPolicy: OnFailure
       schedulerName: default-scheduler
       securityContext: {}

@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
@@ -49,14 +49,12 @@ spec:
           value: slow-3-v2
         - name: LOG_LEVEL
           value: DEBUG
+        - name: DEBUG_NO_CLEANUP
+          value: "0"
         - name: POD_CONFIGURATION_CONTAINER
-          value: alexdevel:5000/pod-configuration:nextV
-        - name: NOTIFY_START_URL
-          value: http://www.alexcos.ro
-        - name: NOTIFY_STOP_URL
-          value: http://www.alexcos.ro
+          value: b2b-docker-registry.cloud.ext.systems/pod-configuration:nextV
         - name: POD_PUBLISH_CONTAINER
-          value: alexdevel:5000/pod-publishing:nextV
+          value: b2b-docker-registry.cloud.ext.systems/pod-publishing:nextV
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
@@ -88,15 +86,15 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-      imagePullSecrets:
-        - name: regcred
       dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: regcred
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext:
-        runAsUser: 1001
         fsGroup: 1001
-        runAsNonRoot: True
+        runAsNonRoot: true
+        runAsUser: 1001
       serviceAccount: db-operator
       serviceAccountName: db-operator
       terminationGracePeriodSeconds: 30
