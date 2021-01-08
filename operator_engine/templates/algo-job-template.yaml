@@ -23,8 +23,6 @@ spec:
         securityContext:
           runAsNonRoot: true
           runAsUser: 1001
-      imagePullSecrets:
-        - name: regcred
       restartPolicy: OnFailure
       schedulerName: default-scheduler
       securityContext: {}
