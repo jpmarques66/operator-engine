@@ -32,13 +32,13 @@ spec:
         - name: AWS_REGION
           value: us-east-1
         - name: IPFS_OUTPUT
-          value: https://ipfs-extended-dev.data-marketplace.io
+          value: https://ipfs-extended.data-marketplace.io
         - name: IPFS_OUTPUT_PREFIX
-          value: https://ipfs-extended-dev.data-marketplace.io/ipfs/
+          value: https://ipfs-extended.data-marketplace.io/ipfs/
         - name: IPFS_ADMINLOGS
-          value: https://ipfs-extended-dev.data-marketplace.io
+          value: https://ipfs-extended.data-marketplace.io
         - name: IPFS_ADMINLOGS_PREFIX
-          value: https://ipfs-extended-dev.data-marketplace.io/ipfs/
+          value: https://ipfs-extended.data-marketplace.io/ipfs/
         - name: AWS_BUCKET_OUTPUT
           value: outputbucket
         - name: AWS_BUCKET_ADMINLOGS
