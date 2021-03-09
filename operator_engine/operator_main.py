@@ -16,7 +16,7 @@ logger = logging.getLogger('ocean-operator')
 #logger.setLevel(OperatorConfig.LOG_LEVEL)
 logger.setLevel(logging.DEBUG)
 kubernetes.config.load_incluster_config()
-
+#current_namespace = open("/var/run/secrets/kubernetes.io/serviceaccount/namespace").read()
 #start the sql thread
 
 
@@ -84,7 +84,6 @@ def handle_new_job(jobId,logger):
                 stop_specific_job(body['metadata']['namespace'],body['metadata']['name']+"-algorithm-job",logger)
                 break
             time.sleep(5.0)
-        update_sql_job_datefinished(body['metadata']['name'],logger)
     else:
         logging.info(f"Job: {jobId} Configure failed, algo was skipped")
     
@@ -102,6 +101,7 @@ def handle_new_job(jobId,logger):
 
     if sqlstatus==30:
         update_sql_job_status(body['metadata']['name'],70,logger)
+    update_sql_job_datefinished(body['metadata']['name'],logger)
     logging.info(f"Job: {jobId} Finished")
     cleanup_job(body['metadata']['namespace'], jobId, logger)
     notify_stop(body, logger)

@@ -1,8 +1,8 @@
 [![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
 
-# Operator-Engine
+<h1 align="center">Operator-Enging</h1>
 
-> Python library allowing to interact with the Kubernetes infrastructure
+> Orchestrates a compute job
 
 ![Travis (.com) branch](https://img.shields.io/travis/com/oceanprotocol/operator-engine/develop)
 ![GitHub contributors](https://img.shields.io/github/contributors/oceanprotocol/operator-engine)
@@ -96,13 +96,14 @@ The following resources need attention:
 | `OPERATOR_PRIVATE_KEY`                                 | Private key of address used to sign notifications and consume algo/inputs (operator service has the same address)                   |
 | `IPFS_OUTPUT`, `IPFS_ADMINLOGS`                        | IPFS gateway to upload the output data (algorithm logs & algorithm output) and admin logs (logs from pod-configure & pod-publish)|
 | `IPFS_OUTPUT_PREFIX`, `IPFS_ADMINLOGS_PREFIX`          | Prefix used for the results files (see below)                                               |
-| `IPFS_EXPIRY_TIME`                                     | Default expiry time in seconds ("0" = unlimited)                                              |
+| `IPFS_EXPIRY_TIME`                                     | Default expiry time  for ipfs  (see https://github.com/ipfs/ipfs-cluster/blob/dbca14e83295158558234e867477ce07a523b81b/CHANGELOG.md#rest-api-2_), with an expected value in Go's time format, i.e. 12h (optional)
 | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION` | S3 credentials for the logs and output buckets.                                         |
 | `AWS_BUCKET_OUTPUT`                                    | Bucket that will hold the output data (algorithm logs & algorithm output).                  |
 | `AWS_BUCKET_ADMINLOGS`                                 | Bucket that will hold the admin logs (logs from pod-configure & pod-publish).               |
 | `STORAGE_CLASS`                                        | Storage class to use (see next section).                                                    |
 | `NOTIFY_START_URL`                                     | URL to call when a new job starts.                                                          |
 | `NOTIFY_STOP_URL`                                      | URL to call when a new job ends.                                                            |
+| `SERVICE_ACCOUNT`                                      | K8 service account to run pods (same as the one used in deployment). Defaults to db-operator|
 
 
  
