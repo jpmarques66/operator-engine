@@ -155,6 +155,9 @@ def create_configure_job(body, logger):
     job['spec']['template']['spec']['containers'][0]['env'].append({'name': 'POSTGRES_HOST','value': PGConfig.POSTGRES_HOST})
     job['spec']['template']['spec']['containers'][0]['env'].append({'name': 'POSTGRES_PORT','value': PGConfig.POSTGRES_PORT})
     job['spec']['template']['spec']['containers'][0]['env'].append({'name': 'POSTGRES_DB','value': PGConfig.POSTGRES_DB})
+    job['spec']['template']['spec']['containers'][0]['env'].append({'name': 'PRIVATE_KEY',
+                                                                    'value': OperatorConfig.OPERATOR_PRIVATE_KEY})
+    
     
     # Volumes
     job['spec']['template']['spec']['volumes'] = []
@@ -179,7 +182,9 @@ def create_configure_job(body, logger):
                     'name': 'adminlogs', 'readOnly': False}
     job['spec']['template']['spec']['containers'][0]['volumeMounts'].append(
         volume_mount)
-
+    # set the account
+    job['spec']['template']['spec']['serviceAccount']=OperatorConfig.SERVICE_ACCOUNT
+    job['spec']['template']['spec']['serviceAccountName']=OperatorConfig.SERVICE_ACCOUNT
     # Workflow config volume
     job['spec']['template']['spec']['volumes'].append(
         {'name': 'workflow', 'configMap': {'defaultMode': 420, 'name': body['metadata']['name']}})
@@ -275,6 +280,9 @@ def create_algorithm_job(body, logger, resources):
         volume_mount)
     # Admin logs volume -  Do not mount it here
 
+    # set the account
+    job['spec']['template']['spec']['serviceAccount']=OperatorConfig.SERVICE_ACCOUNT
+    job['spec']['template']['spec']['serviceAccountName']=OperatorConfig.SERVICE_ACCOUNT
     # Workflow config volume
     job['spec']['template']['spec']['volumes'].append(
         {'name': 'workflow', 'configMap': {'defaultMode': 420, 'name': body['metadata']['name']}})
@@ -374,6 +382,10 @@ def create_publish_job(body, logger):
     job['spec']['template']['spec']['containers'][0]['volumeMounts'].append(
         volume_mount)
 
+    # set the account
+    job['spec']['template']['spec']['serviceAccount']=OperatorConfig.SERVICE_ACCOUNT
+    job['spec']['template']['spec']['serviceAccountName']=OperatorConfig.SERVICE_ACCOUNT
+    
     # Workflow config volume
     job['spec']['template']['spec']['volumes'].append(
         {'name': 'workflow', 'configMap': {'defaultMode': 420, 'name': body['metadata']['name']}})
